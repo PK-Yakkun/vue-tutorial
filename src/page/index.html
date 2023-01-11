@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My first Vue app</title>
+    <script src="https://unpkg.com/vue@2"></script>
+  </head>
+  <body>
+    <!-- STEP1: idで紐付けられ、Vueインスタンスの中で処理が実行される -->
+    <div id="app">{{ message }}</div>
+
+    <!-- STEP2: v-bind バインディングし、この要素のtitle要素にテキストを与える -->
+    <div id="app-2">
+      <span v-bind:title="message">
+        Hover your mouse over me for a few seconds to see my dynamically bound
+        title!
+      </span>
+    </div>
+
+    <!-- STEP3: v-if 条件分岐 -->
+    <div id="app-3">
+      <span v-if="seen">Now you see me</span>
+    </div>
+
+    <!-- STEP4: v-for 配列内のデータを扱う -->
+    <div id="app-4">
+      <ol>
+        <li v-for="todo in todos">{{ todo.text }}</li>
+      </ol>
+    </div>
+    <script>
+      // STEP1
+      var app = new Vue({
+        el: "#app",
+        data: {
+          message: "Hello Vue!",
+        },
+      });
+
+      // STEP2
+      var app2 = new Vue({
+        el: "#app-2",
+        data: {
+          message: "You loaded this page on " + new Date().toLocaleString(),
+        },
+      });
+
+      // STEP3
+      var app3 = new Vue({
+        el: "#app-3",
+        data: {
+          seen: true,
+        },
+      });
+
+      // STEP4
+      var app4 = new Vue({
+        el: "#app-4",
+        data: {
+          todos: [
+            { text: "フライパンを温める" },
+            { text: "油を敷く" },
+            { text: "溶き卵を投入する" },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>
